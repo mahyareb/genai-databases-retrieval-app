@@ -21,6 +21,7 @@ from pydantic import BaseModel
 from numpy import float32
 from google.cloud.alloydb.connector import Connector
 import sqlalchemy
+from sqlalchemy.ext.asyncio import create_async_engine
 
 import models
 from .. import datastore
@@ -54,10 +55,11 @@ class Client(datastore.Client):
 
     @classmethod
     async def create(cls, config: Config) -> "Client":
-        async def getconn():
-            async with Connector() as connector:
-                conn = await connector.connect(
-                    "projects/{config.project}/locations/{config.region}/clusters/{config.cluster}/instances/{config.instance}",
+        def getconn(config):
+            with Connector() as connector:
+                url = f"projects/{config.project}/locations/{config.region}/clusters/{config.cluster}/instances/{config.instance}"
+                conn = connector.connect(
+                    url,
                     config.driver,
                     user=config.user,
                     password=config.password,
@@ -65,9 +67,9 @@ class Client(datastore.Client):
                 )
             return conn
 
-        pool = await sqlalchemy.ext.asyncio.create_async_engine(
-              "postgresql+pg8000://",
-              creator=getconn,
+        pool = create_async_engine(
+              "postgresql+asyncpg://",
+              creator=getconn(config),
         )
         if pool is None:
             raise TypeError("pool not instantiated")
@@ -83,9 +85,9 @@ class Client(datastore.Client):
             await conn.execute(
                 """
                 CREATE TABLE products(
-                  product_id VARCHAR(1024) PRIMARY KEY, 
-                  product_name TEXT, 
-                  description TEXT, 
+                  product_id VARCHAR(1024) PRIMARY KEY,
+                  product_name TEXT,
+                  description TEXT,
                   list_price NUMERIC
                 )
                 """
@@ -138,10 +140,10 @@ class Client(datastore.Client):
                     ORDER BY similarity DESC
                     LIMIT $3
                 )
-                SELECT 
-                    product_name, 
-                    list_price, 
-                    description 
+                SELECT
+                    product_name,
+                    list_price,
+                    description
                 FROM products
                 WHERE product_id IN (SELECT product_id FROM vector_matches)
             """,
