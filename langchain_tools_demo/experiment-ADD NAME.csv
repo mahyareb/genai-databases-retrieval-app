@@ -1,0 +1,456 @@
+question,response,stdout,steps
+What gate is flight 118 at?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Get Flight"",
+  ""action_input"": {
+    ""id"": 118
+  }
+}
+```[0m",Error
+What is the status of flight 118? ,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Get Flight"",
+  ""action_input"": {
+    ""id"": 118
+  }
+}
+```[0m",Error
+What is the status of flight 188? ,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Get Flight"",
+  ""action_input"": {
+    ""id"": 188
+  }
+}
+```[0m",Error
+What gate is flight UA 1532 at?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Search Flights By Flight Number"",
+  ""action_input"": {
+    ""airline"": ""UA"",
+    ""flight_number"": ""1532""
+  }
+}
+```[0m",Error
+What is the status of flight UA 1532? ,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Get Flight"",
+  ""action_input"": {
+    ""id"": 1234
+  }
+}
+```[0m",Error
+What time is my flight leaving today?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Get Flight"",
+  ""action_input"": {
+    ""id"": 1234
+  }
+}
+```[0m",Error
+What flights are departing SFO?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""List Flights"",
+  ""action_input"": {
+    ""departure_airport"": ""SFO"",
+    ""arrival_airport"": null,
+    ""date"": ""2023-12-15""
+  }
+}
+```[0m",Error
+what flights leave SEA on 11-01-2023?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""List Flights"",
+  ""action_input"": {
+    ""departure_airport"": ""SEA"",
+    ""arrival_airport"": null,
+    ""date"": ""2023-11-01""
+  }
+}
+```[0m",Error
+What flights are leaving from SFO today?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""List Flights"",
+  ""action_input"": {
+    ""departure_airport"": ""SFO"",
+    ""arrival_airport"": null,
+    ""date"": ""2023-12-15""
+  }
+}
+```[0m",Error
+What flights are leaving from SFO on 2023-11-01?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""List Flights"",
+  ""action_input"": {
+    ""departure_airport"": ""SFO"",
+    ""arrival_airport"": null,
+    ""date"": ""2023-11-01""
+  }
+}
+```[0m",Error
+What flights land at SFO today?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""List Flights"",
+  ""action_input"": {
+    ""departure_airport"": null,
+    ""arrival_airport"": ""SFO"",
+    ""date"": ""2023-12-15""
+  }
+}
+```[0m",Error
+What flights arrive at SFO today?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""List Flights"",
+  ""action_input"": {
+    ""departure_airport"": null,
+    ""arrival_airport"": ""SFO"",
+    ""date"": ""2023-12-15""
+  }
+}
+```[0m",Error
+What flights arrive at SFO tomorrow?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""List Flights"",
+  ""action_input"": {
+    ""departure_airport"": null,
+    ""arrival_airport"": ""SFO"",
+    ""date"": ""2023-12-16""
+  }
+}
+```[0m",Error
+Find flights that leave SFO and arrive at SEA,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""List Flights"",
+  ""action_input"": {
+    ""departure_airport"": ""SFO"",
+    ""arrival_airport"": ""SEA"",
+    ""date"": ""2023-12-15""
+  }
+}
+```[0m",Error
+Where does flight 118 land?,"Error: 1 validation error for FlightNumberInput
+airline
+  none is not an allowed value (type=type_error.none.not_allowed)","
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Search Flights By Flight Number"",
+  ""action_input"": {
+    ""airline"": null,
+    ""flight_number"": ""118""
+  }
+}
+```[0m",Error
+What gate does flight 118 land?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Get Flight"",
+  ""action_input"": {
+    ""id"": 118
+  }
+}
+```[0m",Error
+What gate does flight UA 1532 land?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Search Flights By Flight Number"",
+  ""action_input"": {
+    ""airline"": ""UA"",
+    ""flight_number"": ""1532""
+  }
+}
+```[0m",Error
+Where can I get coffee near gate A6?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Search Amenities"",
+  ""action_input"": {
+    ""query"": ""coffee near gate A6""
+  }
+}
+```[0m",Error
+Where can I get a snack near the gate for flight 457?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Search Amenities"",
+  ""action_input"": {
+    ""query"": ""food near gate 45""
+  }
+}
+```[0m",Error
+Where can I get a snack near the gate for flight UA1739?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Search Amenities"",
+  ""action_input"": {
+    ""query"": ""food near gate 75""
+  }
+}
+```[0m",Error
+I need a gift,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Search Amenities"",
+  ""action_input"": {
+    ""query"": ""gift shop""
+  }
+}
+```[0m",Error
+Where is Starbucks?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Search Amenities"",
+  ""action_input"": {
+    ""query"": ""Starbucks""
+  }
+}
+```[0m",Error
+What are the hours of Amy's Drive Thru?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Search Amenities"",
+  ""action_input"": {
+    ""query"": ""Amy's Drive Thru""
+  }
+}
+```[0m",Error
+Where can I get a salad in Terminal 1?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Search Amenities"",
+  ""action_input"": {
+    ""query"": ""salad Terminal 1""
+  }
+}
+```[0m",Error
+I need headphones,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Search Amenities"",
+  ""action_input"": {
+    ""query"": ""headphones""
+  }
+}
+```[0m",Error
+Are there restaurants open at midnight?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Search Amenities"",
+  ""action_input"": {
+    ""query"": ""restaurants open at midnight""
+  }
+}
+```[0m",Error
+Where can I buy a luxury bag?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Search Amenities"",
+  ""action_input"": {
+    ""query"": ""luxury bag""
+  }
+}
+```[0m",Error
+Where is SFO?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Get Airport"",
+  ""action_input"": {
+    ""id"": 1
+  }
+}
+```[0m",Error
+Where is the san Prancisco airport?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Get Airport"",
+  ""action_input"": {
+    ""id"": 1
+  }
+}
+```[0m",Error
+What is the code for San Francisco airport?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Get Airport"",
+  ""action_input"": {
+    ""id"": 1
+  }
+}
+```[0m",Error
+What is the YWG airport?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Get Airport"",
+  ""action_input"": {
+    ""id"": 100
+  }
+}
+```[0m",Error
+hi,"Hello! Welcome to the SFO Airport Assistant. I can help you with a variety of tasks, such as finding your gate, checking flight status, and recommending airport amenities. How can I assist you today?","
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Final Answer"",
+  ""action_input"": ""Hello! Welcome to the SFO Airport Assistant. I can help you with a variety of tasks, such as finding your gate, checking flight status, and recommending airport amenities. How can I assist you today?""
+}
+```[0m
+
+[1m> Finished chain.[0m
+",[]
+How can you help me?,"I can help you with a variety of tasks related to the San Francisco Airport, including finding flights, getting directions, and finding amenities.","
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Final Answer"",
+  ""action_input"": ""I can help you with a variety of tasks related to the San Francisco Airport, including finding flights, getting directions, and finding amenities.""
+}
+```[0m
+
+[1m> Finished chain.[0m
+",[]
+Where are the restrooms?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Search Amenities"",
+  ""action_input"": {
+    ""query"": ""restrooms""
+  }
+}
+```[0m",Error
+what are airport hours?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Get Airport"",
+  ""action_input"": {
+    ""id"": 1
+  }
+}
+```[0m",Error
+Where is TSA pre-check?,Error: Tool does not support sync,"
+
+[1m> Entering new AgentExecutor chain...[0m
+[32;1m[1;3mAction:
+```
+{
+  ""action"": ""Search Amenities"",
+  ""action_input"": {
+    ""query"": ""TSA pre-check""
+  }
+}
+```[0m",Error

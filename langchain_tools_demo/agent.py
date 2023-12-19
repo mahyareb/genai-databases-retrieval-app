@@ -30,7 +30,7 @@ set_verbose(bool(os.getenv("DEBUG", default=False)))
 def init_agent() -> AgentExecutor:
     """Load an agent executor with tools and LLM"""
     print("Initializing agent..")
-    llm = VertexAI(max_output_tokens=512)
+    llm = VertexAI(max_output_tokens=512, model_name="gemini-pro")
     memory = ConversationBufferMemory(
         memory_key="chat_history", input_key="input", output_key="output"
     )
