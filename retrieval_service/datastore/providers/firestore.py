@@ -51,7 +51,9 @@ class Client(datastore.Client[Config]):
         amenities: list[models.Amenity],
         flights: list[models.Flight],
     ) -> None:
-        async def delete_collections(collection_list: list[AsyncCollectionReference]):
+        async def delete_collections(
+            collection_list: list[AsyncCollectionReference],
+        ):
             # Checks if colelction exists and deletes all documents
             delete_tasks = []
             for collection_ref in collection_list:
@@ -61,7 +63,9 @@ class Client(datastore.Client[Config]):
 
                 docs = collection_ref.stream()
                 async for doc in docs:
-                    delete_tasks.append(asyncio.create_task(doc.reference.delete()))
+                    delete_tasks.append(
+                        asyncio.create_task(doc.reference.delete())
+                    )
             asyncio.gather(*delete_tasks)
 
         # Check if the collections already exist; if so, delete collections
@@ -158,19 +162,21 @@ class Client(datastore.Client[Config]):
         return airports, amenities, flights
 
     async def get_airport_by_id(self, id: int) -> Optional[models.Airport]:
-        query = self.__client.collection("airports").where(
-            filter=FieldFilter("id", "==", id)
-        )
+        query = self.__client.collection("airports").where(str(id))
         airport_doc = await query.get()
-        airport_dict = airport_doc.to_dict() | {"id": airport_doc.id}
+        airport_dict = airport_doc.to_dict()
+        if airport_dict is None:
+            return None
         return models.Airport.model_validate(airport_dict)
 
     async def get_airport_by_iata(self, iata: str) -> Optional[models.Airport]:
         query = self.__client.collection("airports").where(
-            filter=FieldFilter("iata", "==", iata)
+            filter=FieldFilter("iata", "==", iata.upper())
         )
         airport_doc = await query.get()
-        airport_dict = airport_doc.to_dict() | {"id": airport_doc.id}
+        airport_dict = airport_doc[0].to_dict()
+        if airport_dict is None:
+            return None
         return models.Airport.model_validate(airport_dict)
 
     async def search_airports(
@@ -188,7 +194,9 @@ class Client(datastore.Client[Config]):
             query = query.where("city", "==", city)
 
         if name is not None:
-            query = query.where("name", ">=", name).where("name", "<=", name + "\uf8ff")
+            query = query.where("name", ">=", name).where(
+                "name", "<=", name + "\uf8ff"
+            )
 
         docs = query.stream()
         airports = []
@@ -198,24 +206,27 @@ class Client(datastore.Client[Config]):
         return airports
 
     async def get_amenity(self, id: int) -> Optional[models.Amenity]:
-        query = self.__client.collection("amenities").where(
-            filter=FieldFilter("id", "==", id)
-        )
+        query = self.__client.collection("amenities").document(str(id))
         amenity_doc = await query.get()
         amenity_dict = amenity_doc.to_dict() | {"id": amenity_doc.id}
         return models.Amenity.model_validate(amenity_dict)
 
     async def amenities_search(
-        self, query_embedding: list[float], similarity_threshold: float, top_k: int
+        self,
+        query_embedding: list[float],
+        similarity_threshold: float,
+        top_k: int,
     ) -> list[models.Amenity]:
-        raise NotImplementedError("Semantic search not yet supported in Firestore.")
+        raise NotImplementedError(
+            "Semantic search not yet supported in Firestore."
+        )
 
     async def get_flight(self, flight_id: int) -> Optional[models.Flight]:
-        query = self.__client.collection("flights").where(
-            filter=FieldFilter("id", "==", flight_id)
-        )
+        query = self.__client.collection("flights").document(str(flight_id))
         flight_doc = await query.get()
-        flight_dict = flight_doc.to_dict() | {"id": flight_doc.id}
+        flight_dict = flight_doc.to_dict()
+        if flight_dict is None:
+            return None
         return models.Flight.model_validate(flight_dict)
 
     async def search_flights_by_number(

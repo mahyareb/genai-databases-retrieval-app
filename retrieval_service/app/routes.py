@@ -44,6 +44,9 @@ async def get_airport(
             status_code=422,
             detail="Request requires query params: airport id or iata",
         )
+
+    if results is None:
+        raise HTTPException(status_code=404, detail="Airport not found.")
     return results
 
 
@@ -54,7 +57,7 @@ async def search_airports(
     city: Optional[str] = None,
     name: Optional[str] = None,
 ):
-    if country == None and city == None and name == None:
+    if country is None and city is None and name is None:
         raise HTTPException(
             status_code=422,
             detail="Request requires at least one query params: country, city, or airport name",
@@ -69,6 +72,8 @@ async def search_airports(
 async def get_amenity(id: int, request: Request):
     ds: datastore.Client = request.app.state.datastore
     results = await ds.get_amenity(id)
+    if results is None:
+        raise HTTPException(status_code=404, detail="Amenity not found.")
     return results
 
 
@@ -86,8 +91,10 @@ async def amenities_search(query: str, top_k: int, request: Request):
 @routes.get("/flights")
 async def get_flight(flight_id: int, request: Request):
     ds: datastore.Client = request.app.state.datastore
-    flights = await ds.get_flight(flight_id)
-    return flights
+    flight = await ds.get_flight(flight_id)
+    if flight is None:
+        raise HTTPException(status_code=404, detail="Flight not found.")
+    return flight
 
 
 @routes.get("/flights/search")
