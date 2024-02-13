@@ -22,6 +22,7 @@ from fastapi.responses import PlainTextResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from markdown import markdown
+from piny import StrictMatcher, YamlLoader  # type: ignore
 from starlette.middleware.sessions import SessionMiddleware
 
 from orchestrator import BaseOrchestrator, createOrchestrator
@@ -29,8 +30,11 @@ from orchestrator import BaseOrchestrator, createOrchestrator
 routes = APIRouter()
 templates = Jinja2Templates(directory="templates")
 
-BASE_HISTORY: list[BaseMessage] = [
-    AIMessage(content="I am an SFO Airport Assistant, ready to assist you.")
+BASE_HISTORY = [
+    {
+        "type": "ai",
+        "data": {"content": "I am an SFO Airport Assistant, ready to assist you."},
+    }
 ]
 CLIENT_ID = os.getenv("CLIENT_ID")
 routes = APIRouter()
